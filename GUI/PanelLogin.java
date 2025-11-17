@@ -1,14 +1,10 @@
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Dimension;
-import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -16,6 +12,7 @@ import java.awt.event.ActionEvent;
 public class PanelLogin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+    private WindowManager frame;
 	private JTextField userNameField;
 	private JTextField passWordField;
 
@@ -24,13 +21,14 @@ public class PanelLogin extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void login() {
-		Testing.changePanel("search");
+		frame.setPanel("search");
 	}
 	
 	/**
 	 * Create the panel.
 	 */
-	public PanelLogin() {
+	public PanelLogin(WindowManager frame) {
+        this.frame = frame;
 		setMinimumSize(new Dimension(720, 400));
 		setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
 		JLabel lblMealersChoice = new JLabel("Mealer's Choice");

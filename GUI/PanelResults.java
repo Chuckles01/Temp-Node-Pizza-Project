@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 public class PanelResults extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+    private WindowManager frame;
 
 	/**
 	 * A method that adds the currently viewed recipe as a favorite for the currently logged in user
@@ -25,14 +26,14 @@ public class PanelResults extends JPanel {
 	 * A method that returns to the search panel to start a new search
 	 */
 	private void newSearch() {
-		Testing.changePanel("search");
+		frame.setPanel("search");
 		return;
 	}
 	/**
 	 * Create the panel.
 	 */
-	public PanelResults() {
-		
+	public PanelResults(WindowManager frame) {
+		this.frame = frame;
 		JTextArea txtrResults = new JTextArea();
 		txtrResults.setFont(new Font("Dialog", Font.PLAIN, 20));
 		txtrResults.setText("results");

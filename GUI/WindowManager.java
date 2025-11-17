@@ -10,9 +10,9 @@ public class WindowManager extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private CardLayout card = new CardLayout();
 	private JPanel mainPanel = new JPanel(card);
-	private JPanel login = new PanelLogin();
-	private JPanel search = new PanelSearch();
-	private JPanel results = new PanelResults();
+	private JPanel login = new PanelLogin(this);
+	private JPanel search = new PanelSearch(this);
+	private JPanel results = new PanelResults(this);
 
     /**
 	 * Create the frame.

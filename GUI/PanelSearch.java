@@ -14,13 +14,14 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class PanelSearch extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+    private WindowManager frame;
 
 	/**
 	 * A method that logs the user out
 	 * Currently only changes panel
 	 */
 	private void logout() {
-		Testing.changePanel("login");
+		frame.setPanel("login");
 		return;
 	}
 	
@@ -29,7 +30,7 @@ public class PanelSearch extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void search() {
-		Testing.changePanel("results");
+		frame.setPanel("results");
 		return;
 	}
 	
@@ -38,7 +39,7 @@ public class PanelSearch extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void favorites() {
-		Testing.changePanel("results");
+		frame.setPanel("results");
 	}
 	
 	/**
@@ -52,7 +53,8 @@ public class PanelSearch extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PanelSearch() {
+	public PanelSearch(WindowManager frame) {
+        this.frame = frame;
 		setMinimumSize(new Dimension(1280, 720));
 		setPreferredSize(new Dimension(1920, 1080));
 		setMaximumSize(new Dimension(2560, 1440));
