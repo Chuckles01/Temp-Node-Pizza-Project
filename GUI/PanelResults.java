@@ -45,8 +45,6 @@ public class PanelResults extends JPanel {
 		JLabel lblRecipe = new JLabel("Recipe");
 		lblRecipe.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 32));
 		
-		JTextArea textArea = new JTextArea();
-		
 		JTextArea txtrRecipeArea = new JTextArea();
 		txtrRecipeArea.setFont(new Font("Dialog", Font.PLAIN, 20));
 		txtrRecipeArea.setText("Recipe Area");
@@ -70,54 +68,52 @@ public class PanelResults extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(80, 179, Short.MAX_VALUE) // Gap from screen left edge to Results label
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(252)
-							.addComponent(lblResults))
+							.addGap(73)
+							.addComponent(lblResults, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(91))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(179)
 							.addComponent(txtrResults, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(54)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(145)
-									.addComponent(textArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(txtrRecipeArea, GroupLayout.PREFERRED_SIZE, 1341, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(txtrRecipeArea, GroupLayout.DEFAULT_SIZE, 1341, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(86)
-							.addComponent(lblRecipe)
+							.addComponent(lblRecipe, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(66)
-							.addComponent(btnFavorite, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-							.addGap(633)
-							.addComponent(btnNewSearch, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(85, Short.MAX_VALUE))
+							.addComponent(btnFavorite, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+							.addGap(200, 633, Short.MAX_VALUE) // gap between Favorite button and New Search button
+							.addComponent(btnNewSearch, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+							.addGap(77)))
+					.addGap(87))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(62)
+					.addGap(59)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblResults, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblRecipe, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addGap(18))
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(btnNewSearch, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnFavorite, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnNewSearch, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnFavorite, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 49, Short.MAX_VALUE))
+							.addGap(6)))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(txtrRecipeArea, GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
-						.addComponent(scrollBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
-						.addComponent(txtrResults, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(14))
+						.addComponent(txtrRecipeArea, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+						.addComponent(scrollBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+						.addComponent(txtrResults, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
+					.addGap(58))
 		);
 		setLayout(groupLayout);
 

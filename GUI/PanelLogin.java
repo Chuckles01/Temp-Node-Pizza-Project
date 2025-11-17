@@ -31,7 +31,7 @@ public class PanelLogin extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelLogin() {
-		setMinimumSize(new Dimension(1920, 1080));
+		setMinimumSize(new Dimension(720, 400));
 		setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
 		JLabel lblMealersChoice = new JLabel("Mealer's Choice");
 		lblMealersChoice.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 99));
@@ -61,40 +61,49 @@ public class PanelLogin extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(601)
-					.addComponent(lblMealersChoice)
-					.addContainerGap(647, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(769, Short.MAX_VALUE)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(300, 560, Short.MAX_VALUE) // Gap from Components left edge to screen left edge
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(174)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblUsername)
-								.addComponent(lblPassword))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(passWordField, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
-								.addComponent(userNameField, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE))))
-					.addGap(775))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(202)
+									.addComponent(btnLogin, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblUsername, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(9)
+											.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(passWordField, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+										.addComponent(userNameField, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))))
+							.addGap(256))
+						.addComponent(lblMealersChoice, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
+					.addGap(300, 560, Short.MAX_VALUE)) // Gap from Components right edge to screen right edge
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(320)
-					.addComponent(lblMealersChoice)
+					.addGap(200, 320, Short.MAX_VALUE) // Gap from Screen top edge to Components top edge
+					.addComponent(lblMealersChoice, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
 					.addGap(34)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(userNameField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblUsername))
+						.addComponent(userNameField, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(9)
+							.addComponent(lblUsername, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 					.addGap(31)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(passWordField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+						.addComponent(passWordField, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(9)
+							.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
 					.addGap(42)
-					.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(420, Short.MAX_VALUE))
+					.addComponent(btnLogin, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+					.addGap(200, 385, Short.MAX_VALUE)) // Gap from Components bottom edge to Screen bottom edge
 		);
 		setLayout(groupLayout);
 		

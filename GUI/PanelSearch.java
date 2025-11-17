@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
-import java.awt.Component;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -55,16 +53,20 @@ public class PanelSearch extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelSearch() {
-		setMaximumSize(new Dimension(1920, 1080));
+		setMinimumSize(new Dimension(1280, 720));
+		setPreferredSize(new Dimension(1920, 1080));
+		setMaximumSize(new Dimension(2560, 1440));
 		
+		// The typing of these Combo boxes will be changed when the flavor, texture, type, and time enums are defined
 		JComboBox<String> flavorTown = new JComboBox<String>(); // The combo box for flavors
+		flavorTown.setMinimumSize(new Dimension(300, 27));
 		
 		JComboBox<String> textureCombo = new JComboBox<String>(); // The combo box for textures
 		
 		JComboBox<String> typeCombo = new JComboBox<String>(); // The combo box for types
 		
 		JComboBox<String> timeCombo = new JComboBox<String>(); // The combo box for times
-		
+		// The typing of the allergen combo box will stay JCheckBoxes and each check box will be a different allergen ENUM
 		JComboBox<JCheckBox> allergenCombo = new JComboBox<JCheckBox>(); // The combo box for allergens. I think making it a combo box of JCheckBoxes for multiple allergens would work.
 		
 		// Search button
@@ -118,86 +120,94 @@ public class PanelSearch extends JPanel {
 		// Big block of text for the layout.
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(500, 1286, Short.MAX_VALUE) // Gap from Screen left edge to favorites/logged in as left edge
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE))
+							.addGap(200, 355, Short.MAX_VALUE) // Gap from loggedInAs left edge to Favorites button left edge
+							.addComponent(btnFavorites, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(lblCommonAllergens))
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(lblTimeUntilReady))
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addContainerGap()
-											.addComponent(lblType))
-										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-											.addGroup(groupLayout.createSequentialGroup()
-												.addGap(715)
-												.addComponent(lblTexture, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-											.addGroup(groupLayout.createSequentialGroup()
-												.addContainerGap()
-												.addComponent(lblFlavor))))))
-							.addGap(31)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(allergenCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
-								.addComponent(timeCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
-								.addComponent(typeCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
-								.addComponent(textureCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
-								.addComponent(flavorTown, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(836, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(1281, Short.MAX_VALUE)
-					.addComponent(lblLoggedInAs)
-					.addGap(18)
-					.addComponent(lblUsernameGoesHere)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnFavorites)
-						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblLoggedInAs, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(lblUsernameGoesHere, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+							.addGap(78)
+							.addComponent(btnLogout, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
 					.addGap(78))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(200, 583, Short.MAX_VALUE) // Gap from screen left edge to Quantifier labels left edge
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblCommonAllergens, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(19) // Gap from longest label left edge to Time label left edge
+							.addComponent(lblTimeUntilReady, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(166) // Gap from longest label left edge to Type label left edge
+							.addComponent(lblType, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(132) // Gap from longest label left edge to Texture label left edge
+							.addComponent(lblTexture, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(144) // Gap from longest label left edge to Flavor label left edge
+							.addComponent(lblFlavor, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+					.addGap(31) // Gap from labels right edge to Combo box left edge
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnSearch, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+						.addComponent(allergenCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
+						.addComponent(timeCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
+						.addComponent(typeCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
+						.addComponent(textureCombo, Alignment.TRAILING, 0, 233, Short.MAX_VALUE)
+						.addComponent(flavorTown, Alignment.TRAILING, 0, 233, Short.MAX_VALUE))
+					.addGap(250, 836, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(72)
-					.addComponent(btnFavorites, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-					.addGap(127)
+					.addGap(25, 72, Short.MAX_VALUE) // Gap from Screen top edge to Favorites button top edge
+					.addComponent(btnFavorites, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+					.addGap(45, 133, Short.MAX_VALUE) // Gap from Favorites button bottom edge to Combo Boxes top edge
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(flavorTown, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblFlavor))
-					.addGap(45)
+						.addComponent(flavorTown, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(9)
+							.addComponent(lblFlavor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(15, 45, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textureCombo, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblTexture, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-					.addGap(47)
+						.addComponent(textureCombo, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(13)
+							.addComponent(lblTexture, GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)))
+					.addGap(15, 47, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(typeCombo, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblType, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-					.addGap(45)
+						.addComponent(typeCombo, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(13)
+							.addComponent(lblType, GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)))
+					.addGap(15, 45, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(timeCombo, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblTimeUntilReady, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-					.addGap(51)
+						.addComponent(timeCombo, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(13)
+							.addComponent(lblTimeUntilReady, GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)))
+					.addGap(15, 51, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(allergenCombo, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCommonAllergens, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+						.addComponent(allergenCombo, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(13)
+							.addComponent(lblCommonAllergens, GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)))
 					.addGap(55)
-					.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+					.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
+					.addGap(75, 196, Short.MAX_VALUE) // Gap from Search Button bottom edge to LoggedInAs top edge
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblLoggedInAs)
-						.addComponent(lblUsernameGoesHere))
-					.addGap(36))
+						.addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 33, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(5)
+							.addComponent(lblUsernameGoesHere, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(4)
+							.addComponent(lblLoggedInAs, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(59))
 		);
-		groupLayout.linkSize(SwingConstants.VERTICAL, new Component[] {flavorTown, textureCombo, typeCombo, timeCombo, allergenCombo});
 		setLayout(groupLayout);
 
 	}
