@@ -1,29 +1,32 @@
 DROP DATABASE IF EXISTS mealers_choice;
 CREATE DATABASE mealers_choice;
+USE mealers_choice;
 
 CREATE TABLE recipe (
-  recipe_id INT               AUTO_INCREMENT,
-  flavor    ENUM('salty',
+  recipe_id     INT               AUTO_INCREMENT,
+  recipe_name   VARCHAR(30)       NOT NULL,
+  flavor        ENUM('salty',
     'sour',
     'sweet',
     'bitter',
     'savory')                 NOT NULL,
-  texture   ENUM('crumbly',
+  texture       ENUM('crumbly',
     'soft',
     'creamy',
-    'tender'
-    'chewy'
-    'crispy',
+    'tender',
+    'chewy',
     'crispy',
     'moist',
-    'flakey')                 NOT NULL,
-  type      ENUM('breakfast',
+    'dry',
+    'flakey',
+    'gooey')                 NOT NULL,
+  type          ENUM('breakfast',
     'lunch',
     'dinner',
-    'appetizer',
+    'appatezier',
     'dessert',
     'snack')                  NOT NULL,
-  time      ENUM('15min',
+  time          ENUM('15min',
     '30min',
     '45min',
     '1hr',
@@ -32,7 +35,7 @@ CREATE TABLE recipe (
     '1hr45min',
     '2hr',
     '2hr+')                   NOT NULL,
-  CONSTRINAT recipePK
+  CONSTRAINT recipePK
     PRIMARY KEY (recipe_id)
 ) ENGINE INNODB
 ;
@@ -58,7 +61,7 @@ CREATE TABLE common_allergen (
     'peanuts',
     'wheat',
     'soy',
-    'shellfish'
+    'shellfish',
     'sesame')                 NOT NULL,
   CONSTRAINT common_allergenPK
     PRIMARY KEY (recipe_id, common_allergen),
@@ -78,7 +81,7 @@ CREATE TABLE user (
 
 CREATE TABLE favorite (
   username  VARCHAR(45)     NOT NULL,
-  recipe_id INT             NOT NULL,
+  recipe_id INT             NOT NULL,t
   CONSTRAINT favoritePK
     PRIMARY KEY (username, recipe_id),
   CONSTRAINT favorite_fk_user
