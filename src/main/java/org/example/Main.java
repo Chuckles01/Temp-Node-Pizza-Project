@@ -2,8 +2,12 @@ package org.example;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.EventQueue;
 
 public class Main {
+
+    private static WindowManager frame;
+
     public static void main(String[] args) {
 
         // Search for sour chewy snack min15 with no allergens
@@ -35,5 +39,13 @@ public class Main {
             String name = result.getName();
             System.out.println("\nSearch for sour chewy snack min15 with milk and fish allergen\nrecipe " + id + ": " + name);
         }
+
+        try {
+            frame = new WindowManager();
+            frame.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

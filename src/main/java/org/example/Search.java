@@ -1,9 +1,9 @@
 package org.example;
 
 import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.*;
 
 public class Search {
     private Flavor flavor;

@@ -1,3 +1,5 @@
+package org.example;
+
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
