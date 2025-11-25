@@ -16,8 +16,13 @@ public class PanelSearch extends JPanel {
 
 	private static final long serialVersionUID = 1L;
     private WindowManager frame;
+    private JComboBox<Search.Flavor> flavorTown;
+    private JComboBox<Search.Texture> textureCombo;
+    private JComboBox<Search.Type> typeCombo;
+    private JComboBox<Search.Time> timeCombo;
+    private JComboBox<Search.Allergen> allergenCombo;
 
-	/**
+    /**
 	 * A method that logs the user out
 	 * Currently only changes panel
 	 */
@@ -31,7 +36,8 @@ public class PanelSearch extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void search() {
-		frame.setPanel("results");
+		//new Search(flavorTown.getItemAt(0), textureCombo.getItemAt(0), typeCombo.getItemAt(0), timeCombo.getItemAt(0), allergenCombo.getItemAt(0));
+        frame.setPanel("results");
 		return;
 	}
 	
@@ -59,18 +65,27 @@ public class PanelSearch extends JPanel {
 		setMinimumSize(new Dimension(1280, 720));
 		setPreferredSize(new Dimension(1920, 1080));
 		setMaximumSize(new Dimension(2560, 1440));
-		
-		// The typing of these Combo boxes will be changed when the flavor, texture, type, and time enums are defined
-		JComboBox<String> flavorTown = new JComboBox<String>(); // The combo box for flavors
+
+		 // The combo box for flavors
+        flavorTown = new JComboBox<Search.Flavor>(Search.Flavor.values());
 		flavorTown.setMinimumSize(new Dimension(300, 27));
+        flavorTown.setFont(new Font("Liberation Serif", Font.ITALIC, 20));
 		
-		JComboBox<String> textureCombo = new JComboBox<String>(); // The combo box for textures
+		 // The combo box for textures
+        textureCombo = new JComboBox<Search.Texture>(Search.Texture.values());
+        textureCombo.setFont(new Font("Liberation Serif", Font.ITALIC, 20));
+
+		 // The combo box for types
+        typeCombo = new JComboBox<Search.Type>(Search.Type.values());
+        typeCombo.setFont(new Font("Liberation Serif", Font.ITALIC, 20));
 		
-		JComboBox<String> typeCombo = new JComboBox<String>(); // The combo box for types
-		
-		JComboBox<String> timeCombo = new JComboBox<String>(); // The combo box for times
-		// The typing of the allergen combo box will stay JCheckBoxes and each check box will be a different allergen ENUM
-		JComboBox<JCheckBox> allergenCombo = new JComboBox<JCheckBox>(); // The combo box for allergens. I think making it a combo box of JCheckBoxes for multiple allergens would work.
+		// The combo box for times
+        timeCombo = new JComboBox<Search.Time>(Search.Time.values());
+        timeCombo.setFont(new Font("Liberation Serif", Font.ITALIC, 20));
+
+        // The combo box for allergens
+        allergenCombo = new JComboBox<Search.Allergen>(Search.Allergen.values());
+        allergenCombo.setFont(new Font("Liberation Serif", Font.ITALIC, 20));
 		
 		// Search button
 		JButton btnSearch = new JButton("Search");

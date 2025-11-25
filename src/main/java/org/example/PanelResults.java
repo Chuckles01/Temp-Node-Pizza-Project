@@ -20,7 +20,8 @@ public class PanelResults extends JPanel {
 	/**
 	 * A method that adds the currently viewed recipe as a favorite for the currently logged in user
 	 */
-	private void favorite() {
+	private void favorite()
+    {
 		return;
 	}
 	
@@ -31,6 +32,15 @@ public class PanelResults extends JPanel {
 		frame.setPanel("search");
 		return;
 	}
+
+    /**
+     * A method that receives the search results and populates the list of meal names
+     * @param results The list of results
+     */
+    public void populateResults(SearchResult results) {
+        return;
+    }
+
 	/**
 	 * Create the panel.
 	 */
