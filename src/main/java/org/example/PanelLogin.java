@@ -25,6 +25,10 @@ public class PanelLogin extends JPanel {
 	private void login() {
 		frame.setPanel("search");
 	}
+
+    private void createAccount() {
+
+    }
 	
 	/**
 	 * Create the panel.
@@ -56,6 +60,14 @@ public class PanelLogin extends JPanel {
 			}
 		});
 		btnLogin.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 24));
+
+        JButton btnCreate = new JButton("Create Account");
+        btnCreate.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent c){
+               createAccount();
+           }
+        });
+        btnCreate.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 24));
 		
 		// This big hunk of text is for the layout
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -70,6 +82,9 @@ public class PanelLogin extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(202)
 									.addComponent(btnLogin, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                                .addGroup(groupLayout.createSequentialGroup()
+                                    .addGap(202)
+                                    .addComponent(btnCreate, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addComponent(lblUsername, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -87,7 +102,7 @@ public class PanelLogin extends JPanel {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(200, 320, Short.MAX_VALUE) // Gap from Screen top edge to Components top edge
+					.addGap(150, 320, Short.MAX_VALUE) // Gap from Screen top edge to Components top edge
 					.addComponent(lblMealersChoice, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
 					.addGap(34)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -102,7 +117,9 @@ public class PanelLogin extends JPanel {
 							.addGap(9)
 							.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
 					.addGap(42)
-					.addComponent(btnLogin, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                        .addComponent(btnLogin, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                        .addGap(15)
+                        .addComponent(btnCreate, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
 					.addGap(200, 385, Short.MAX_VALUE)) // Gap from Components bottom edge to Screen bottom edge
 		);
 		setLayout(groupLayout);
