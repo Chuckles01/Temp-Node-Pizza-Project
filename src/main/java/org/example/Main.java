@@ -1,0 +1,39 @@
+package org.example;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Search for sour chewy snack min15 with no allergens
+        List<Search.Allergen> searchAllergens= new ArrayList<>();
+        Search search = new Search(Search.Flavor.sour, Search.Texture.chewy, Search.Type.snack, Search.Time.min15, searchAllergens);
+        List<SearchResult> results = search.runSearch();
+        for (SearchResult result : results) {
+            int id = result.getId();
+            String name = result.getName();
+            System.out.println("Search for sour chewy snack min15 with no allergens\nrecipe " + id + ": " + name);
+        }
+
+        // Search for sour chewy snack min15 with milk allergen
+        searchAllergens.add(Search.Allergen.milk);
+        search = new Search(Search.Flavor.sour, Search.Texture.chewy, Search.Type.snack, Search.Time.min15, searchAllergens);
+        results = search.runSearch();
+        for (SearchResult result : results) {
+            int id = result.getId();
+            String name = result.getName();
+            System.out.println("\nSearch for sour chewy snack min15 with milk allergen\nrecipe " + id + ": " + name);
+        }
+
+        // Search for sour chewy snack min15 with milk and fish allergen
+        searchAllergens.add(Search.Allergen.fish);
+        search = new Search(Search.Flavor.sour, Search.Texture.chewy, Search.Type.snack, Search.Time.min15, searchAllergens);
+        results = search.runSearch();
+        for (SearchResult result : results) {
+            int id = result.getId();
+            String name = result.getName();
+            System.out.println("\nSearch for sour chewy snack min15 with milk and fish allergen\nrecipe " + id + ": " + name);
+        }
+    }
+}
