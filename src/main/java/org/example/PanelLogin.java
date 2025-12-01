@@ -24,6 +24,7 @@ public class PanelLogin extends JPanel {
 	 */
 	private void login() {
 
+
         frame.setPanel("search");
 	}
 

@@ -19,7 +19,6 @@ public class PanelResults extends JPanel {
 	 */
 	private void favorite() {
 
-
         return;
 	}
 	

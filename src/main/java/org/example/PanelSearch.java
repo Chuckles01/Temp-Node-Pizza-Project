@@ -6,7 +6,6 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Dimension;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
