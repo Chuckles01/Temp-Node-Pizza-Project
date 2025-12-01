@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class PanelSearch extends JPanel {
 
@@ -36,7 +37,8 @@ public class PanelSearch extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void search() {
-		//new Search(flavorTown.getItemAt(0), textureCombo.getItemAt(0), typeCombo.getItemAt(0), timeCombo.getItemAt(0), allergenCombo.getItemAt(0));
+		//Search s = new Search(flavorTown.getItemAt(0), textureCombo.getItemAt(0), typeCombo.getItemAt(0), timeCombo.getItemAt(0), allergenCombo.getItemAt(0));
+        //frame.searched(s.runSearch());
         frame.setPanel("results");
 		return;
 	}

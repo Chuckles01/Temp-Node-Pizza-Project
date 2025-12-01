@@ -3,6 +3,7 @@ package org.example;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -70,5 +71,11 @@ public class WindowManager extends JFrame {
 		pack();
 		return;
 	}
+
+    public void searched(List<SearchResult> r){
+        if(results.getClass() == PanelResults.class) {
+            ((PanelResults)results).populateResults(r);
+        }
+    }
 
 }

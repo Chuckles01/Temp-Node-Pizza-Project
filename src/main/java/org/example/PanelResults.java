@@ -11,25 +11,29 @@ import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class PanelResults extends JPanel {
 
 	private static final long serialVersionUID = 1L;
     private WindowManager frame;
+    private List<SearchResult> results;
 
 	/**
 	 * A method that adds the currently viewed recipe as a favorite for the currently logged in user
 	 */
-	private void favorite()
-    {
-		return;
+	private void favorite() {
+
+
+        return;
 	}
 	
 	/**
 	 * A method that returns to the search panel to start a new search
 	 */
 	private void newSearch() {
-		frame.setPanel("search");
+		this.results = null;
+        frame.setPanel("search");
 		return;
 	}
 
@@ -37,7 +41,9 @@ public class PanelResults extends JPanel {
      * A method that receives the search results and populates the list of meal names
      * @param results The list of results
      */
-    public void populateResults(SearchResult results) {
+    public void populateResults(List<SearchResult> results) {
+        this.results = results;
+
         return;
     }
 
