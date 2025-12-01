@@ -36,10 +36,10 @@ public class Search {
                     " WHERE";
 
             // construct the rest of the where statement
-            if (flavor != null) query += " r.flavor = '" + flavor.getFlavor() + "' AND";
-            if (texture != null) query += " r.texture = '" + texture.getTexture() + "' AND";
-            if (type != null) query += " r.type = '" + type.getType() + "' AND";
-            if (time != null) query += " r.time = '" + time.getTime() +"'";
+            if (flavor != Flavor.any) query += " r.flavor = '" + flavor.getFlavor() + "' AND";
+            if (texture != Texture.any) query += " r.texture = '" + texture.getTexture() + "' AND";
+            if (type != Type.any) query += " r.type = '" + type.getType() + "' AND";
+            if (time != Time.any) query += " r.time = '" + time.getTime() +"'";
             else {
                 // ending of query has AND if time is not a search condition
                 query = query.substring(0, query.length() - 4) + "'";
@@ -75,6 +75,7 @@ public class Search {
 
 // special enums that match sql enum names with their string data
     public enum Flavor {
+        any("any"),
         salty("salty"),
         sour("sour"),
         sweet("sweet"),
@@ -93,6 +94,7 @@ public class Search {
     }
 
     public enum Texture {
+        any("any"),
         crumbly("crumbly"),
         soft("soft"),
         creamy("creamy"),
@@ -116,6 +118,7 @@ public class Search {
     }
 
     public enum Type {
+        any("any"),
         breakfast("breakfast"),
         lunch("lunch"),
         dinner("dinner"),
@@ -134,6 +137,7 @@ public class Search {
     }
 
     public enum Time {
+        any("any"),
         min15("15min"),
         min30("30min"),
         min45("45min"),
