@@ -10,14 +10,14 @@ public class Search {
     private Texture texture;
     private Type type;
     private Time time;
-    private List<Allergen> allergens =  new ArrayList<Allergen>();
+    private Allergen allergen;
 
-    public Search(Flavor flavor, Texture texture, Type type, Time time, List<Allergen> allergens) {
+    public Search(Flavor flavor, Texture texture, Type type, Time time, Allergen allergen) {
         this.flavor = flavor;
         this.texture = texture;
         this.type = type;
         this.time = time;
-        this.allergens = allergens;
+        this.allergen = allergen;
     }
 
     public  List<SearchResult> runSearch() {
@@ -46,16 +46,12 @@ public class Search {
             }
 
             // subquery for common_allergens associative table (or condition so any allergen is caught)
-            if (!allergens.isEmpty()) {
+            if (allergen == any) {
                 query += " AND r.recipe_id NOT IN (" +
                         " SELECT a.recipe_id" +
                         " FROM common_allergen a" +
                         " WHERE";
-                for (int i = 0; i < allergens.size() - 1; i++) {
-                    query += " a.common_allergen = '" + allergens.get(i).getAllergen() + "' OR";
-                }
-                query += " a.common_allergen = '" + allergens.get(allergens.size() - 1).getAllergen() + "')";
-            }
+            query += " a.common_allergen = '" + allergen.getAllergen() + "')";
             query += ";";
 
             ResultSet resultSet = statement.executeQuery(query);
@@ -159,6 +155,7 @@ public class Search {
     }
 
     public enum Allergen {
+        any("any"),
         milk("milk"),
         eggs("eggs"),
         fish("fish"),
