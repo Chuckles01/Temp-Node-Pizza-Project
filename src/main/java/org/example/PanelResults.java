@@ -1,14 +1,9 @@
 package org.example;
 
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
-import javax.swing.JScrollBar;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -52,9 +47,8 @@ public class PanelResults extends JPanel {
 	 */
 	public PanelResults(WindowManager frame) {
 		this.frame = frame;
-		JTextArea txtrResults = new JTextArea();
+		JList<SearchResult> txtrResults = new JList<>();
 		txtrResults.setFont(new Font("Dialog", Font.PLAIN, 20));
-		txtrResults.setText("results");
 		
 		JLabel lblResults = new JLabel("Results");
 		lblResults.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 32));

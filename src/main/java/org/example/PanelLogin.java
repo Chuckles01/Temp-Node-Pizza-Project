@@ -23,9 +23,13 @@ public class PanelLogin extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void login() {
-		frame.setPanel("search");
+
+        frame.setPanel("search");
 	}
 
+    /**
+     * A method that creates a new user in the user database
+     */
     private void createAccount() {
 
     }

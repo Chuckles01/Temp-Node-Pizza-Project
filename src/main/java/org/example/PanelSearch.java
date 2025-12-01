@@ -37,8 +37,8 @@ public class PanelSearch extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void search() {
-		//Search s = new Search(flavorTown.getItemAt(0), textureCombo.getItemAt(0), typeCombo.getItemAt(0), timeCombo.getItemAt(0), allergenCombo.getItemAt(0));
-        //frame.searched(s.runSearch());
+		Search s = new Search(flavorTown.getItemAt(0), textureCombo.getItemAt(0), typeCombo.getItemAt(0), timeCombo.getItemAt(0), allergenCombo.getItemAt(0));
+        frame.searched(s.runSearch());
         frame.setPanel("results");
 		return;
 	}
