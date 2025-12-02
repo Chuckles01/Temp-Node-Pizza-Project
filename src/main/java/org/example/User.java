@@ -20,7 +20,7 @@ public class User {
 
            // if username exists and the password matches then logic is successful and the username can be used.
            Statement statement = connection.createStatement();
-           String query = "SELECT * FROM users WHERE username = '" + username + "'";
+           String query = "SELECT * FROM user WHERE username = '" + username + "'";
            ResultSet resultSet = statement.executeQuery(query);
            if (resultSet.next()) {
                String user_password =  resultSet.getString("password");
@@ -34,9 +34,8 @@ public class User {
 
         }catch(SQLException e){
             e.printStackTrace();
+            return false;
         }
-
-        return false;
     }
 
     /**
@@ -55,13 +54,13 @@ public class User {
 
             // if user already exists send a string stating that
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM users WHERE username = '" + username + "'";
+            String query = "SELECT * FROM user WHERE username = '" + username + "'";
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 return false;
             }
             else {
-                query = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + password + "')";
+                query = "INSERT INTO user (username, password) VALUES ('" + username + "', '" + password + "');";
                 statement.executeUpdate(query);
                 this.username = username;
                 return true;
@@ -70,8 +69,60 @@ public class User {
 
         }catch(SQLException e){
             e.printStackTrace();
+            return false;
         }
+    }
 
-        return false;
+    /**
+     * Favorites a recipe for current user either need a successful login or createUser before using this
+     * @param recipe_id that is the recipe you want to favorite
+     */
+    public void addFavorite(int recipe_id) {
+        if (this.username == null) {
+            return;
+        }
+        try{
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/mealers_choice",
+                    "root",
+                    "password"
+            );
+
+            // add favorites update
+            Statement statement = connection.createStatement();
+            String update = "INSERT INTO favorite (username, recipe_id)" +
+                    " VALUES ('"+ this.username + "', " + recipe_id + ");";
+            statement.executeUpdate(update);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Removes a recipe from a users favorites in the db
+     * Must have had a successful login or createUser to run
+     * @param recipe_id to remove from favorites
+     */
+    public void removeFavorite(int recipe_id) {
+        if (this.username == null) {
+            return;
+        }
+        try{
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/mealers_choice",
+                    "root",
+                    "password"
+            );
+
+            // add favorites update
+            Statement statement = connection.createStatement();
+            String update = "DELETE FROM favorite " +
+                    "WHERE username = '" + this.username + "' " +
+                    "AND recipe_id = " + recipe_id;
+            statement.executeUpdate(update);
+            statement.executeUpdate(update);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }
