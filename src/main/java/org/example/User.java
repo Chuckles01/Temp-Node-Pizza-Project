@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.sql.*;
 
 public class User {
-    private String username;
+    private String username = null;
 
     public String getUsername() {
         return username;
