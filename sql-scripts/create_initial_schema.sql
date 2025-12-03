@@ -23,7 +23,7 @@ CREATE TABLE recipe (
   type          ENUM('breakfast',
     'lunch',
     'dinner',
-    'appatezier',
+    'appetizer',
     'dessert',
     'snack')                  NOT NULL,
   time          ENUM('15min',
@@ -81,7 +81,7 @@ CREATE TABLE user (
 
 CREATE TABLE favorite (
   username  VARCHAR(45)     NOT NULL,
-  recipe_id INT             NOT NULL,t
+  recipe_id INT             NOT NULL,
   CONSTRAINT favoritePK
     PRIMARY KEY (username, recipe_id),
   CONSTRAINT favorite_fk_user
