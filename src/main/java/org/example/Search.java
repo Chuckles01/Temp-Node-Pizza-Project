@@ -46,11 +46,12 @@ public class Search {
             }
 
             // subquery for common_allergens associative table (or condition so any allergen is caught)
-            if (allergen == any) {
+            if (allergen == Allergen.any) {
                 query += " AND r.recipe_id NOT IN (" +
                         " SELECT a.recipe_id" +
                         " FROM common_allergen a" +
                         " WHERE";
+            }
             query += " a.common_allergen = '" + allergen.getAllergen() + "')";
             query += ";";
 

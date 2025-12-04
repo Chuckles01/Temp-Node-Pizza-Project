@@ -3,7 +3,7 @@ package org.example;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -13,6 +13,10 @@ public class PanelResults extends JPanel {
 	private static final long serialVersionUID = 1L;
     private WindowManager frame;
     private List<SearchResult> results;
+    private String[] recipeNames;
+    private JList<String> txtrResults;
+    private JScrollPane resultsPane;
+    private JTextArea txtrRecipeArea;
 
 	/**
 	 * A method that adds the currently viewed recipe as a favorite for the currently logged in user
@@ -37,7 +41,26 @@ public class PanelResults extends JPanel {
      */
     public void populateResults(List<SearchResult> results) {
         this.results = results;
+        recipeNames = new String[results.size()];
+        int i = 0;
+        for (SearchResult result : results) {
+            String name = result.getName();
+            recipeNames[i] = name;
+            i++;
+        }
+        populateList();
+        return;
+    }
 
+    /**
+     * A method that creates the list of recipe names and places the list into the scroll pane
+     */
+    private void populateList(){
+        txtrResults = new JList<>(recipeNames);
+        txtrResults.setFont(new Font("Dialog", Font.PLAIN, 20));
+        txtrResults.setVisible(true);
+        resultsPane.getViewport().setView(txtrResults);
+        System.out.println("List populates");
         return;
     }
 
@@ -46,18 +69,20 @@ public class PanelResults extends JPanel {
 	 */
 	public PanelResults(WindowManager frame) {
 		this.frame = frame;
-		JList<SearchResult> txtrResults = new JList<>();
-		txtrResults.setFont(new Font("Dialog", Font.PLAIN, 20));
+		resultsPane = new JScrollPane();
+        resultsPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        resultsPane.setBackground(Color.WHITE);
+
+        System.out.println("List added to scroll pane");
 		
 		JLabel lblResults = new JLabel("Results");
 		lblResults.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 32));
-		
-		JScrollBar scrollBar = new JScrollBar();
+
 		
 		JLabel lblRecipe = new JLabel("Recipe");
 		lblRecipe.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 32));
 		
-		JTextArea txtrRecipeArea = new JTextArea();
+		txtrRecipeArea = new JTextArea();
 		txtrRecipeArea.setFont(new Font("Dialog", Font.PLAIN, 20));
 		txtrRecipeArea.setText("Recipe Area");
 		
@@ -88,9 +113,7 @@ public class PanelResults extends JPanel {
 							.addComponent(lblResults, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(91))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(txtrResults, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(resultsPane, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(54)
@@ -123,8 +146,7 @@ public class PanelResults extends JPanel {
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(txtrRecipeArea, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
-						.addComponent(scrollBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
-						.addComponent(txtrResults, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
+						.addComponent(resultsPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
 					.addGap(58))
 		);
 		setLayout(groupLayout);
