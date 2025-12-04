@@ -31,6 +31,7 @@ public class PanelResults extends JPanel {
 	 */
 	private void newSearch() {
 		this.results = null;
+        this.txtrResults = null;
         frame.setPanel("search");
 		return;
 	}
