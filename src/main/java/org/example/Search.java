@@ -25,34 +25,40 @@ public class Search {
 
         try{
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/mealers_choice",
-                    "root",
+                    "jdbc:mysql://192.168.1.180:3306/mealers_choice",
+                    "appUser",
                     "password"
             );
 
             Statement statement = connection.createStatement();
-            String query = "SELECT r.recipe_id, r.recipe_name" +
-                    " FROM recipe r"+
-                    " WHERE";
 
-            // construct the rest of the where statement
-            if (flavor != Flavor.any) query += " r.flavor = '" + flavor.getFlavor() + "' AND";
-            if (texture != Texture.any) query += " r.texture = '" + texture.getTexture() + "' AND";
-            if (type != Type.any) query += " r.type = '" + type.getType() + "' AND";
-            if (time != Time.any) query += " r.time = '" + time.getTime() +"'";
-            else {
-                // ending of query has AND if time is not a search condition
-                query = query.substring(0, query.length() - 4) + "'";
+            String query = "SELECT r.recipe_id, r.recipe_name" +
+                    " FROM recipe r";
+
+            if (this.flavor != Flavor.any
+                || this.texture != Texture.any
+                || this.type != Type.any
+                || this.time != Time.any) {
+                query += " WHERE";
+                // construct the rest of the where statement
+                if (flavor != Flavor.any) query += " r.flavor = '" + flavor.getFlavor() + "' AND";
+                if (texture != Texture.any) query += " r.texture = '" + texture.getTexture() + "' AND";
+                if (type != Type.any) query += " r.type = '" + type.getType() + "' AND";
+                if (time != Time.any) query += " r.time = '" + time.getTime() + "'";
+                else {
+                    // ending of query has AND if time is not a search condition
+                    query = query.substring(0, query.length() - 4) + "'";
+                }
             }
 
             // subquery for common_allergens associative table (or condition so any allergen is caught)
-            if (allergen == Allergen.any) {
+            if (allergen != Allergen.any) {
                 query += " AND r.recipe_id NOT IN (" +
                         " SELECT a.recipe_id" +
                         " FROM common_allergen a" +
                         " WHERE";
+                query += " a.common_allergen = '" + allergen.getAllergen() + "')";
             }
-            query += " a.common_allergen = '" + allergen.getAllergen() + "')";
             query += ";";
 
             ResultSet resultSet = statement.executeQuery(query);
