@@ -9,8 +9,8 @@ public class RecipeRetriever {
 
         try{
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/mealers_choice",
-                    "root",
+                    "jdbc:mysql://47.42.131.112:3306/mealers_choice",
+                    "appUser",
                     "password"
             );
 

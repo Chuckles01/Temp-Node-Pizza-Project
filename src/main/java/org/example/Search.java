@@ -25,7 +25,7 @@ public class Search {
 
         try{
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://192.168.1.180:3306/mealers_choice",
+                    "jdbc:mysql://47.42.131.112:3306/mealers_choice",
                     "appUser",
                     "password"
             );
