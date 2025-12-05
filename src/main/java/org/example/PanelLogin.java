@@ -19,21 +19,63 @@ public class PanelLogin extends JPanel {
 	private JTextField passWordField;
 
 	/**
-	 * A method that searches the user database to match the given user name and password, changes to the search panel if successful.
-	 * Currently only changes panel
+	 * Logs in the user by matching username and password in the database.
 	 */
 	private void login() {
+		// FIXED: correct variable name
+		String username = userNameField.getText().trim();
+		String password = passWordField.getText().trim();
 
+		try {
+			Statement stmt = conn.createStatement();
 
-        frame.setPanel("search");
+			String sql =
+					"SELECT username FROM user WHERE username = '" + username +
+							"' AND password = '" + password + "';";
+
+			ResultSet rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				currentUser = username; // store logged-in user
+				JOptionPane.showMessageDialog(frame, "Login successful!");
+				frame.setPanel("search");
+			} else {
+				JOptionPane.showMessageDialog(frame, "Invalid username or password.");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(frame, "Error with login.");
+		}
 	}
 
-    /**
-     * A method that creates a new user in the user database
-     */
-    private void createAccount() {
+	 /**
+	 * Creates a new user in the user database
+	 */
+	private void createAccount() {
+		String username = usernameField.getText().trim();
+		String password = passwordField.getText().trim();
 
-    }
+		if (username.isEmpty() || password.isEmpty()) {
+			JOptionPane.showMessageDialog(frame, "Username and/or password cannot be empty.");
+			return;
+		}
+		try {
+			Statement stmt = conn.createStatement();
+
+			// Insert new user
+			String insertSql =
+					"INSERT INTO user (username, password) VALUES ('" + username + "', '" + password + "');";
+
+			stmt.executeUpdate(insertSql);
+
+			JOptionPane.showMessageDialog(frame, "Account created successfully!");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(frame, "Error creating account.");
+		}
+	}
 	
 	/**
 	 * Create the panel.

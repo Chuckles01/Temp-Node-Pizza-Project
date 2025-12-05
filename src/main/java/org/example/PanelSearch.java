@@ -42,7 +42,7 @@ public class PanelSearch extends JPanel {
 		return;
 	}
 	
-	/**
+	/**TO DO
 	 * A method that changes to the results panel with the User's list of favorite meals
 	 * Currently only changes panel
 	 */
@@ -50,7 +50,7 @@ public class PanelSearch extends JPanel {
 		frame.setPanel("results");
 	}
 	
-	/**
+	/**TO DO
 	 * A method that gets the logged in User's username and displays it
 	 * @return The username of the currently logged in user
 	 */
