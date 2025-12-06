@@ -102,9 +102,15 @@ public class PanelResults extends JPanel {
 		
 		JLabel lblRecipe = new JLabel("Recipe");
 		lblRecipe.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 32));
-		
+
+        JScrollPane recipeArea = new JScrollPane();
+        recipeArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+
 		txtrRecipeArea = new JTextArea();
 		txtrRecipeArea.setFont(new Font("Dialog", Font.PLAIN, 20));
+        txtrRecipeArea.setLineWrap(true);
+
+        recipeArea.getViewport().setView(txtrRecipeArea);
 		
 		JButton btnFavorite = new JButton("Favorite");
 		btnFavorite.addActionListener(new ActionListener() {
@@ -137,7 +143,7 @@ public class PanelResults extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(54)
-							.addComponent(txtrRecipeArea, GroupLayout.DEFAULT_SIZE, 1341, Short.MAX_VALUE))
+							.addComponent(recipeArea, GroupLayout.DEFAULT_SIZE, 1341, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(86)
 							.addComponent(lblRecipe, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,7 +171,7 @@ public class PanelResults extends JPanel {
 							.addGap(6)))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(txtrRecipeArea, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+						.addComponent(recipeArea, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
 						.addComponent(resultsPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
 					.addGap(58))
 		);
