@@ -26,7 +26,7 @@ public class RecipeRetriever {
 
             // constructs a single string from the retrieved lines
             while (resultSet.next()) {
-                recipe_string = resultSet.getString("line");
+                recipe_string += resultSet.getString("line");
             }
 
         }catch(SQLException e){

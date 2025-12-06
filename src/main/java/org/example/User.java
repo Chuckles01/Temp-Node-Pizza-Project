@@ -121,7 +121,32 @@ public class User {
                     "WHERE username = '" + this.username + "' " +
                     "AND recipe_id = " + recipe_id;
             statement.executeUpdate(update);
-            statement.executeUpdate(update);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Return a list of recipe_ids that are favorited by the current user
+     */
+    public void getFavorites() {
+        if (this.username == null) {
+            return;
+        }
+        try{
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://47.42.131.112:3306/mealers_choice",
+                    "appUser",
+                    "password"
+            );
+
+            // add favorites update
+            Statement statement = connection.createStatement();
+            String update = "SELECT recipe_id " +
+                    "FROM favorite " +
+                    "WHERE username = '" + this.username + "' " +
+                    ";";
+            statement.executeQuery(update);
         }catch(SQLException e){
             e.printStackTrace();
         }
