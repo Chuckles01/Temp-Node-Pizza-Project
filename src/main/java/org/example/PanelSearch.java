@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.List;
 
 public class PanelSearch extends JPanel {
 
@@ -21,13 +20,15 @@ public class PanelSearch extends JPanel {
     private JComboBox<Search.Type> typeCombo;
     private JComboBox<Search.Time> timeCombo;
     private JComboBox<Search.Allergen> allergenCombo;
+    private JLabel lblUsernameGoesHere;
 
     /**
 	 * A method that logs the user out
 	 * Currently only changes panel
 	 */
 	private void logout() {
-		frame.setPanel("login");
+		frame.logout();
+        frame.setPanel("login");
 		return;
 	}
 	
@@ -54,9 +55,9 @@ public class PanelSearch extends JPanel {
 	 * A method that gets the logged in User's username and displays it
 	 * @return The username of the currently logged in user
 	 */
-	private String getUserName() {
-		return "Username goes here";
-	}
+	public void login(String username){
+        lblUsernameGoesHere.setText(username);
+    }
 	
 	/**
 	 * Create the panel.
@@ -115,7 +116,7 @@ public class PanelSearch extends JPanel {
 		JLabel lblLoggedInAs = new JLabel("Logged in as:");
 		lblLoggedInAs.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 24));
 		
-		JLabel lblUsernameGoesHere = new JLabel(getUserName());
+		lblUsernameGoesHere = new JLabel();
 		lblUsernameGoesHere.setFont(new Font("Dialog", Font.PLAIN, 20));
 		
 		// Logout button

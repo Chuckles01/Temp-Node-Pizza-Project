@@ -16,6 +16,7 @@ public class WindowManager extends JFrame {
 	private JPanel login = new PanelLogin(this);
 	private JPanel search = new PanelSearch(this);
 	private JPanel results = new PanelResults(this);
+    private User currentUser;
 
     /**
 	 * Create the frame.
@@ -71,6 +72,23 @@ public class WindowManager extends JFrame {
 		pack();
 		return;
 	}
+
+    public void favoriting(int recipe_id){
+        currentUser.addFavorite(recipe_id);
+    }
+
+    public void login(User user){
+        currentUser = user;
+        ((PanelSearch)search).login(user.getUsername());
+    }
+
+    public void logout(){
+        currentUser = null;
+    }
+
+    public String getUserName(){
+        return currentUser.getUsername();
+    }
 
     public void searched(List<SearchResult> r){
         if(results.getClass() == PanelResults.class) {

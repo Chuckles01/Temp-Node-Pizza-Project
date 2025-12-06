@@ -22,60 +22,28 @@ public class PanelLogin extends JPanel {
 	 * Logs in the user by matching username and password in the database.
 	 */
 	private void login() {
-        frame.setPanel("search");
-//		// FIXED: correct variable name
-//		String username = userNameField.getText().trim();
-//		String password = passWordField.getText().trim();
-//
-//		try {
-//			Statement stmt = conn.createStatement();
-//
-//			String sql =
-//					"SELECT username FROM user WHERE username = '" + username +
-//							"' AND password = '" + password + "';";
-//
-//			ResultSet rs = stmt.executeQuery(sql);
-//
-//			if (rs.next()) {
-//				currentUser = username; // store logged-in user
-//				JOptionPane.showMessageDialog(frame, "Login successful!");
-//				frame.setPanel("search");
-//			} else {
-//				JOptionPane.showMessageDialog(frame, "Invalid username or password.");
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			JOptionPane.showMessageDialog(frame, "Error with login.");
-//		}
+        User currentUser = new User();
+        if(currentUser.login(userNameField.getText().trim(), passWordField.getText().trim())){
+            frame.login(currentUser);
+            frame.setPanel("search");
+        } else {
+            userNameField.setText("Login Error");
+            passWordField.setText("");
+        }
 	}
 
 	 /**
 	 * Creates a new user in the user database
 	 */
 	private void createAccount() {
-//		String username = usernameField.getText().trim();
-//		String password = passwordField.getText().trim();
-//
-//		if (username.isEmpty() || password.isEmpty()) {
-//			JOptionPane.showMessageDialog(frame, "Username and/or password cannot be empty.");
-//			return;
-//		}
-//		try {
-//			Statement stmt = conn.createStatement();
-//
-//			// Insert new user
-//			String insertSql =
-//					"INSERT INTO user (username, password) VALUES ('" + username + "', '" + password + "');";
-//
-//			stmt.executeUpdate(insertSql);
-//
-//			JOptionPane.showMessageDialog(frame, "Account created successfully!");
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			JOptionPane.showMessageDialog(frame, "Error creating account.");
-//		}
+        User createAccount = new User();
+        if(createAccount.createUser(userNameField.getText().trim(), passWordField.getText().trim())){
+            userNameField.setText("Account Created");
+            passWordField.setText("");
+        } else {
+            userNameField.setText("Creation Error");
+            passWordField.setText("");
+        }
 	}
 	
 	/**
@@ -90,9 +58,11 @@ public class PanelLogin extends JPanel {
 		
 		userNameField = new JTextField(); // text field for the username
 		userNameField.setColumns(20);
+        userNameField.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
 		passWordField = new JTextField(); // text field for the password
 		passWordField.setColumns(20);
+        passWordField.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
 		JLabel lblUsername = new JLabel("Username :");
 		lblUsername.setFont(new Font("Dialog", Font.BOLD, 18));

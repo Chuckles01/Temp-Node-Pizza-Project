@@ -3,6 +3,8 @@ package org.example;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -17,13 +19,19 @@ public class PanelResults extends JPanel {
     private JList<String> txtrResults;
     private JScrollPane resultsPane;
     private JTextArea txtrRecipeArea;
+    private String currentRecipe;
 
 	/**
 	 * A method that adds the currently viewed recipe as a favorite for the currently logged in user
 	 */
 	private void favorite() {
-
-        return;
+        if(currentRecipe == null){
+            return;
+        } else {
+            for(SearchResult result : results){
+                if(result.getName().equals(currentRecipe)) frame.favoriting(result.getId());
+            }
+        }
 	}
 	
 	/**
@@ -32,6 +40,7 @@ public class PanelResults extends JPanel {
 	private void newSearch() {
 		this.results = null;
         this.txtrResults = null;
+        this.txtrRecipeArea.setText("");
         frame.setPanel("search");
 		return;
 	}
@@ -53,15 +62,28 @@ public class PanelResults extends JPanel {
         return;
     }
 
+    private void getRecipe(String name){
+        for(SearchResult result : results){
+            if(result.getName().equals(name)){
+                txtrRecipeArea.setText(new RecipeRetriever().getRecipe(result.getId()));
+                currentRecipe = result.getName();
+            }
+        }
+    }
+
     /**
      * A method that creates the list of recipe names and places the list into the scroll pane
      */
     private void populateList(){
         txtrResults = new JList<>(recipeNames);
         txtrResults.setFont(new Font("Dialog", Font.PLAIN, 20));
-        txtrResults.setVisible(true);
+        txtrResults.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                getRecipe((String) txtrResults.getSelectedValue());
+            }
+        });
         resultsPane.getViewport().setView(txtrResults);
-        System.out.println("List populates");
         return;
     }
 
@@ -73,8 +95,6 @@ public class PanelResults extends JPanel {
 		resultsPane = new JScrollPane();
         resultsPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         resultsPane.setBackground(Color.WHITE);
-
-        System.out.println("List added to scroll pane");
 		
 		JLabel lblResults = new JLabel("Results");
 		lblResults.setFont(new Font("Liberation Serif", Font.BOLD | Font.ITALIC, 32));
@@ -85,7 +105,6 @@ public class PanelResults extends JPanel {
 		
 		txtrRecipeArea = new JTextArea();
 		txtrRecipeArea.setFont(new Font("Dialog", Font.PLAIN, 20));
-		txtrRecipeArea.setText("Recipe Area");
 		
 		JButton btnFavorite = new JButton("Favorite");
 		btnFavorite.addActionListener(new ActionListener() {
