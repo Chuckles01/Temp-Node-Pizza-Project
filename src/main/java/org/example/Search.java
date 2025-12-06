@@ -47,7 +47,7 @@ public class Search {
                 if (time != Time.any) query += " r.time = '" + time.getTime() + "'";
                 else {
                     // ending of query has AND if time is not a search condition
-                    query = query.substring(0, query.length() - 4) + "'";
+                    query = query.substring(0, query.length() - 4);
                 }
             }
 
