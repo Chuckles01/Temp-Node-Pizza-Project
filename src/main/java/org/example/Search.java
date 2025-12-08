@@ -53,13 +53,20 @@ public class Search {
 
             // subquery for common_allergens associative table (or condition so any allergen is caught)
             if (allergen != Allergen.any) {
-                query += " AND r.recipe_id NOT IN (" +
+                if (this.flavor != Flavor.any
+                        || this.texture != Texture.any
+                        || this.type != Type.any
+                        || this.time != Time.any)
+                    query += " AND";
+                else query += " WHERE";
+                query += " r.recipe_id NOT IN (" +
                         " SELECT a.recipe_id" +
                         " FROM common_allergen a" +
                         " WHERE";
                 query += " a.common_allergen = '" + allergen.getAllergen() + "')";
             }
             query += ";";
+            System.out.println(query);
 
             ResultSet resultSet = statement.executeQuery(query);
 
@@ -125,7 +132,7 @@ public class Search {
         breakfast("breakfast"),
         lunch("lunch"),
         dinner("dinner"),
-        appatezier("appatezier"),
+        appatezier("appetizer"),
         dessert("dessert"),
         snack("snack");
 
