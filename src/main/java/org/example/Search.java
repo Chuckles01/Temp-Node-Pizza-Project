@@ -66,7 +66,6 @@ public class Search {
                 query += " a.common_allergen = '" + allergen.getAllergen() + "')";
             }
             query += ";";
-            System.out.println(query);
 
             ResultSet resultSet = statement.executeQuery(query);
 
