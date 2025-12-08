@@ -1,1 +1,1 @@
-#Mealer's Choice
+# Mealer's Choice (Project for CS380)
