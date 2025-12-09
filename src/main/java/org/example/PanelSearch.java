@@ -52,7 +52,9 @@ public class PanelSearch extends JPanel {
 	 * Currently only changes panel
 	 */
 	private void favorites() {
-		frame.setPanel("results");
+        User tempUser = new User();
+		frame.searched(tempUser.getFavorites(lblUsernameGoesHere.getText()));
+        frame.setPanel("results");
 	}
 	
 	/**TO DO

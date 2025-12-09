@@ -2,6 +2,8 @@ package org.example;
 
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String username;
@@ -128,10 +130,13 @@ public class User {
 
     /**
      * Return a list of recipe_ids that are favorited by the current user
+     *
+     * @return
      */
-    public void getFavorites() {
-        if (this.username == null) {
-            return;
+    public List<SearchResult> getFavorites(String username) {
+        List<SearchResult> results = new ArrayList<>();
+        if (username == null) {
+            return null;
         }
         try{
             Connection connection = DriverManager.getConnection(
@@ -142,13 +147,21 @@ public class User {
 
             // add favorites update
             Statement statement = connection.createStatement();
-            String update = "SELECT recipe_id " +
-                    "FROM favorite " +
-                    "WHERE username = '" + this.username + "' " +
+            String update = "SELECT r.recipe_id, " +
+                    "r.recipe_name " +
+                    "FROM favorite f " +
+                    "JOIN recipe r on f.recipe_id = r.recipe_id " +
+                    "WHERE username = '" + username + "' " +
                     ";";
-            statement.executeQuery(update);
+            ResultSet resultSet = statement.executeQuery(update);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("recipe_id");
+                String recipeName = resultSet.getString("recipe_name");
+                results.add(new SearchResult(id, recipeName));
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }
+        return results;
     }
 }

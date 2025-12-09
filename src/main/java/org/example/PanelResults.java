@@ -84,6 +84,7 @@ public class PanelResults extends JPanel {
             }
         });
         resultsPane.getViewport().setView(txtrResults);
+        resultsPane.getViewport().setView(txtrResults);
         return;
     }
 
